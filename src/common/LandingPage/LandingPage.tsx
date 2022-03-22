@@ -2,60 +2,77 @@ import React, { useContext } from 'react'
 import cn from 'classnames'
 import { ILandingPageProps } from './types'
 import { ThemeContext } from '../../context/ThemeContext'
-import { Actions } from './components'
-import { Icon, Image, Spinner } from '../../components'
-import profileImage from '../../assets/img/MarnienCueva2.png'
-// data
+import { Button, Icon, Image, Spinner } from '../../components'
 import mock_data from './mock_data'
 
 const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
-  const { className, data = mock_data } = props
-  console.log(
-    '%c 🍰 data: ',
-    'font-size:20px;background-color: #42b983;color:#fff;',
-    data
-  )
+  const { className } = props
 
   const {
     theme: {
       landingPageStyle: {
         baseCls,
-        leftSectionCls,
-        rightSectionCls,
-        leftContainerCls,
-        rightContainerCls,
+        containerCls,
+        leftContentCls,
+        rightContentCls,
+        greetingsCls,
+        authorCls,
+        borderCls,
+        descriptionWrapperCls,
+        descriptionCls,
+        actionWrapperCls,
       },
     },
   } = useContext(ThemeContext)
 
-  // const { greeting, name, alt, image, description, actions } = mock_data ?? {}
+  const { greeting, name, id, image, description1, description2, actions } =
+    mock_data ?? {}
+
+  const { alt, src } = image ?? {}
 
   return (
-    <div className={cn('Landing', baseCls, className)}>
-      <div className={leftSectionCls}>
-        <div className={leftContainerCls}>
-          <p className='text-5xl text-white'>Hi, I am</p>
-          <p className='text-7xl text-emerald-500 font-bold'>Marnien Cueva</p>
-          <p className='text-lg text-white pr-16'>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam
-            sint saepe molestiae perspiciatis aspernatur ullam, dolores ipsa
-            beatae pariatur debitis? Enim nihil quam quaerat velit quas,
-            assumenda veritatis quis repellendus.
-          </p>
-          <Actions />
+    <section key={id} className={cn('Landing', baseCls, className)}>
+      <div className={containerCls}>
+        <div className={leftContentCls}>
+          <p className={greetingsCls}>{greeting}</p>
+          <p className={authorCls}>{name}</p>
+          <div className={borderCls} />
+          <div className={descriptionWrapperCls}>
+            <p className={descriptionCls}>{description1}</p>
+            <p className={descriptionCls}>{description2}</p>
+          </div>
+          <div className={actionWrapperCls}>
+            {actions.map((e: any) => (
+              <Button
+                key={e.id}
+                label={e.label}
+                color={e.color}
+                onClick={e.onClick}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      <div className={rightSectionCls}>
-        <div className={rightContainerCls}>
+      <div className={containerCls}>
+        <div className={rightContentCls}>
           <Image
-            className='w-full h-full object-cover object-top'
-            src={profileImage}
+            className='ml-auto'
+            border={false}
+            background='black'
+            alt={alt}
+            src={src}
+            size='xxl'
+            width={550}
+            height={620}
+            fit='cover'
+            ratio='16:9'
+            rounded='rounded'
             loader={<Spinner />}
             unloader={<Icon />}
           />
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
