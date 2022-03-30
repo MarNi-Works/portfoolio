@@ -5,7 +5,7 @@ import { IImageProps } from './types'
 import { ThemeContext } from '../../context/ThemeContext'
 import { Icon, Spinner } from '../index'
 
-const Image: React.FC<IImageProps> = (props) => {
+const Image: React.FunctionComponent<IImageProps> = (props) => {
   const {
     className,
     border = true,
@@ -24,7 +24,7 @@ const Image: React.FC<IImageProps> = (props) => {
 
   const {
     theme: {
-      imageStyle: {
+      imageStyles: {
         baseCls,
         roundedCls,
         containerCls,

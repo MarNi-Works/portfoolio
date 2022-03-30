@@ -10,7 +10,7 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
 
   const {
     theme: {
-      landingPageStyle: {
+      landingStyles: {
         baseCls,
         containerCls,
         leftContentCls,

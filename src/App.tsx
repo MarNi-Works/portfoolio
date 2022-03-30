@@ -8,15 +8,15 @@ import bgdesign from './assets/img/design-bg.png'
 function App() {
   const {
     theme: {
-      appStyle: { baseCls, containerCls },
+      appStyles: { baseCls, overlayCls, overlayImgCls, containerCls },
     },
   } = useContext(ThemeContext)
 
   return (
-    <div className={cn('', baseCls)}>
-      <div className='absolute inset-0'>
+    <div className={cn('landing-page', baseCls)}>
+      <div className={cn('landing-page__overlay', overlayCls)}>
         <Image
-          className='ml-auto'
+          className={overlayImgCls}
           border={false}
           alt='alt-img'
           src={bgdesign}
@@ -30,7 +30,7 @@ function App() {
           unloader={<Icon />}
         />
       </div>
-      <div className={containerCls}>
+      <div className={cn('landing-page__container', containerCls)}>
         <LandingPage />
       </div>
     </div>

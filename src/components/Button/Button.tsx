@@ -8,7 +8,7 @@ const Button: React.FunctionComponent<IButtonProps> = (props) => {
 
   const {
     theme: {
-      buttonStyle: { baseCls, colorCls },
+      buttonStyles: { baseCls, colorCls },
     },
   } = useContext(ThemeContext)
 

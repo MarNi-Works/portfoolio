@@ -1,5 +1,5 @@
 import React from 'react'
-import defaultTheme from '../themes/index'
+import { theme as defaultTheme } from '../themes'
 
 interface ThemeContextInterface {
   theme: any
